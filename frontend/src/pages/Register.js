@@ -20,9 +20,9 @@ export default function Register() {
     <div className="register">
       <div className="register-card">
         {/* Put your logo image at public/logo.png */}
-        <img src="./JobChankali.png" alt="JobChankali" className="register-logo" />
+        <img src="/icons/logo.svg" alt="JobChankali" className="register-logo" />
 
-        <h1 className="register-title">Create an account</h1>
+        {/*<h1 className="register-title">Create an account</h1>*/}
 
         <form onSubmit={handleSubmit}>
           {/* Candidate / Employer buttons */}

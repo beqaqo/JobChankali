@@ -18,12 +18,7 @@ export default function Login() {
   return (
     <div className="login-page">
       <div className="login-card">
-        {/* Logo: swap for <img src="/logo.png" alt="JobChankali" /> if you have the image */}
-        <div className="login-logo">
-          Job<span>Chankali</span>
-        </div>
-
-        <h1 className="login-title">Welcome</h1>
+        <img src="/icons/logo.svg" alt="JobChankali" className="login-logo" />
 
         <form className="login-form" onSubmit={handleSubmit}>
           <label htmlFor="email">Email:</label>

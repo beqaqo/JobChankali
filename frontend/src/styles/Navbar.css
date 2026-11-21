@@ -5,13 +5,18 @@
   --grey: #8a8a8a;
   --page-bg: #f5f5fa;
   --white: #ffffff;
-  --sidebar-width: 180px;
-  --topbar-height: 80px;
+  --sidebar-width: 240px;   /* matches the Figma sidebar */
+  --topbar-height: 100px;   /* matches the Figma top bar */
+}
+
+body {
+  margin: 0;
+  background: var(--page-bg);
 }
 
 .main-content {
-  margin-left: 240px;  /* must match the sidebar's width */
-  margin-top: 70px;    /* must match the top bar's height */
+  margin-left: var(--sidebar-width);
+  margin-top: var(--topbar-height);
   padding: 24px;
 }
 
@@ -31,15 +36,18 @@
 }
 
 .logo {
-  font-size: 22px;
-  font-weight: 700;
-  color: var(--dark);
-  text-decoration: none;
-  margin-bottom: 20px;
+  display: block;
+  margin-bottom: 15px;
 }
 
-.logo span {
-  color: var(--orange);
+.logo-img {
+  width: 180px;
+  height: auto;
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
 }
 
 .sidebar-nav {
@@ -114,11 +122,13 @@
 }
 
 .search-button {
-  width: 40px;
+  width: 44px;
   border: none;
   background: var(--orange);
-  color: var(--white);
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .login-link {
@@ -147,12 +157,11 @@
   :root {
     --sidebar-width: 60px;
   }
-  .logo,
+  .logo-img {
+    display: none;
+  }
   .user-box,
   .sidebar-link {
-    font-size: 0;       /* hides the words, keeps the icons */
-  }
-  .sidebar-link .icon {
-    font-size: 18px;
+    font-size: 0;
   }
 }

@@ -21,23 +21,24 @@ export default function Navbar() {
     return isActive ? 'sidebar-link active' : 'sidebar-link';
   }
 
-  return (
+    return (
     <>
       {/* ===== LEFT SIDEBAR ===== */}
       <aside className="sidebar">
         <Link to="/" className="logo">
-          Job<span>Chankali</span>
+          {/* Put your logo in public/icons/logo.svg */}
+          <img src="/icons/logo.svg" alt="JobChankali" className="logo-img" />
         </Link>
 
         <nav className="sidebar-nav">
-          <NavLink to="/" end className={linkClass}>
-            <span className="icon">🏠</span> Home
+          <NavLink to="/jobs" end className={linkClass}>
+            <img src="/icons/home.svg" alt="" className="icon" /> Home
           </NavLink>
-          <NavLink to="/jobs" className={linkClass}>
-            <span className="icon">💼</span> My Jobs
-          </NavLink>
+          {/*<NavLink to="/jobs" className={linkClass}>*/}
+          {/*  <img src="/icons/my-jobs.svg" alt="" className="icon" /> My Jobs*/}
+          {/*</NavLink>*/}
           <NavLink to="/activity" className={linkClass}>
-            <span className="icon">📈</span> My Activity
+            <img src="/icons/activity.svg" alt="" className="icon" /> My Activity
           </NavLink>
         </nav>
 
@@ -55,7 +56,7 @@ export default function Navbar() {
             onChange={(e) => setQuery(e.target.value)}
           />
           <button type="submit" className="search-button" aria-label="Search">
-            🔍
+            <img src="/icons/search.svg" alt="" className="icon" />
           </button>
         </form>
 

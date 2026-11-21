@@ -1,18 +1,21 @@
 // All page routes. To add a page: create it in pages/ and add a <Route> below.
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import JobListing from './pages/JobListing';
-import JobDetail from './pages/JobDetail';
 import Register from './pages/Register';
 import Login from './pages/Login';
 import PostJob from './pages/PostJob';
 
 export default function App() {
+  const location = useLocation();
+
+  const hideNavbar = location.pathname === '/login' || location.pathname === '/register';
+
   return (
     <>
-      <Navbar />
-      <main className="main-content">
+      {!hideNavbar && <Navbar />}
+      <main className={hideNavbar ? '' : 'main-content'}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/jobs" element={<JobListing />} />

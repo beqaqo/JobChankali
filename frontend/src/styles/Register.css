@@ -1,10 +1,24 @@
 /* Centers the card on the page */
 .register {
+  --orange: #ff6b0f;
+  --navy: #0f1f40;
+
+  /* Center the card in the middle of the screen */
+  min-height: 100vh;
   display: flex;
   justify-content: center;
-  padding: 30px 0;
+  align-items: center;
+  background: #ffffff;
+  font-family: 'Poppins', Arial, sans-serif;
 }
 
+.register-logo {
+  display: block;
+  width: 280px;      /* change to fit your logo */
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;    /* centers the logo in the card */
+}
 /* The big grey rounded box */
 .register-card {
   width: 520px;
@@ -14,10 +28,6 @@
   padding: 30px 50px;
   text-align: center;
   font-family: 'Poppins', sans-serif;
-}
-
-.register-logo {
-  width: 260px;
 }
 
 .register-title {

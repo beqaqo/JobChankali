@@ -27,9 +27,11 @@
 
 /* ---------- Logo and title ---------- */
 .login-logo {
-  font-size: 36px;
-  font-weight: 800;
-  color: var(--navy);
+  display: block;
+  width: 320px;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
 }
 
 .login-logo span {
