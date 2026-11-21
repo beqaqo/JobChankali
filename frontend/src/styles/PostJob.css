@@ -1,0 +1,60 @@
+/* Centers the card on the page */
+.post-job {
+  display: flex;
+  justify-content: center;
+  padding: 30px 0;
+}
+
+/* The big grey rounded box */
+.post-job-card {
+  width: 550px;
+  max-width: 100%;
+  background: #f4f4f4;
+  border-radius: 40px;
+  padding: 30px 50px;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  box-sizing: border-box;
+}
+
+.post-job-logo {
+  width: 280px;
+  margin-bottom: 30px;
+}
+
+/* Text boxes and the description box */
+.post-job-card input,
+.post-job-card textarea {
+  display: block;
+  width: 100%;
+  margin-bottom: 30px;
+  padding: 0 18px;
+  border: none;
+  background: #d9d9d9;
+  font-family: inherit;
+  font-size: 14px;
+  box-sizing: border-box;  /* keeps the width exactly 100% */
+}
+
+.post-job-card input {
+  height: 45px;
+  border-radius: 25px;
+}
+
+.post-job-card textarea {
+  height: 95px;
+  padding-top: 12px;
+  border-radius: 25px;
+  resize: none;  /* removes the little drag handle */
+}
+
+.post-button {
+  padding: 10px 35px;
+  border: none;
+  border-radius: 25px;
+  background: #0f1d3d;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}

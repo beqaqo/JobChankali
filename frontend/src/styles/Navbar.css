@@ -1,0 +1,158 @@
+/* ---------- Colors (change them here once, used everywhere) ---------- */
+:root {
+  --orange: #ff6b0f;
+  --dark: #1e2a4a;
+  --grey: #8a8a8a;
+  --page-bg: #f5f5fa;
+  --white: #ffffff;
+  --sidebar-width: 180px;
+  --topbar-height: 80px;
+}
+
+.main-content {
+  margin-left: 240px;  /* must match the sidebar's width */
+  margin-top: 70px;    /* must match the top bar's height */
+  padding: 24px;
+}
+
+/* ---------- Left sidebar ---------- */
+.sidebar {
+  position: fixed;      /* stays in place when you scroll */
+  top: 0;
+  left: 0;
+  width: var(--sidebar-width);
+  height: 100vh;
+  background: var(--white);
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  box-sizing: border-box;
+  font-family: 'Poppins', Arial, sans-serif;
+}
+
+.logo {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--dark);
+  text-decoration: none;
+  margin-bottom: 20px;
+}
+
+.logo span {
+  color: var(--orange);
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 8px;
+  border-radius: 8px;
+  color: var(--grey);
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.sidebar-link:hover {
+  background: var(--page-bg);
+}
+
+/* The page you are currently on */
+.sidebar-link.active {
+  color: var(--orange);
+}
+
+/* margin-top: auto pushes this box to the bottom */
+.user-box {
+  margin-top: auto;
+  padding: 10px 12px;
+  border: 1px solid #e5e5ea;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--dark);
+}
+
+/* ---------- Top bar ---------- */
+.topbar {
+  position: fixed;
+  top: 0;
+  left: var(--sidebar-width);  /* start after the sidebar */
+  right: 0;
+  height: var(--topbar-height);
+  background: var(--page-bg);
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 0 10px 0 10px;
+  box-sizing: border-box;
+  font-family: 'Poppins', Arial, sans-serif;
+}
+
+.search {
+  display: flex;
+  flex: 1;              /* takes all the free space */
+  height: 34px;
+  background: var(--white);
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.search input {
+  flex: 1;
+  border: none;
+  outline: none;
+  padding: 0 16px;
+  font-size: 12px;
+  text-align: center;
+}
+
+.search-button {
+  width: 40px;
+  border: none;
+  background: var(--orange);
+  color: var(--white);
+  cursor: pointer;
+}
+
+.login-link {
+  color: var(--orange);
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.signin-button {
+  background: var(--orange);
+  color: var(--white);
+  padding: 8px 20px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.signin-button:hover {
+  opacity: 0.9;
+}
+
+/* ---------- Small screens: hide the sidebar text ---------- */
+@media (max-width: 700px) {
+  :root {
+    --sidebar-width: 60px;
+  }
+  .logo,
+  .user-box,
+  .sidebar-link {
+    font-size: 0;       /* hides the words, keeps the icons */
+  }
+  .sidebar-link .icon {
+    font-size: 18px;
+  }
+}

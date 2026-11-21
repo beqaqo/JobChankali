@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 
 import { getJobs } from '../services/api';
+import JobCard from '../components/JobCard';
+import '../styles/JobsListing.css';
 
 export default function JobListing() {
     const [jobs, setJobs] = useState([]);
@@ -26,35 +28,28 @@ export default function JobListing() {
     }, []);
 
     if (loading) {
-        return <p>Loading jobs...</p>;
+        return <p className="job-listing__message">Loading jobs...</p>;
     }
 
     if (error) {
-        return <p>{error}</p>;
+        return (
+            <p className="job-listing__message job-listing__message--error">
+                {error}
+            </p>
+        );
     }
 
     if (jobs.length === 0) {
-        return <p>No jobs available at the moment.</p>;
+        return <p className="job-listing__message">No jobs available at the moment.</p>;
     }
 
     return (
-        <div>
-            {/* TODO (Member C): design the job listing page according to Figma. */}
-
-            <h1>Available Jobs</h1>
-
-            {/* TODO (Member C): replace this list with <JobCard /> components. */}
+        <div className="job-listing">
+            {/* TODO (Member B - optional): implement job search/filtering. */}
 
             {jobs.map((job) => (
-                <div key={job.id}>
-                    <h2>{job.title}</h2>
-                    <h3>{job.company}</h3>
-                    <p>{job.location}</p>
-                    <p>{job.description}</p>
-                </div>
+                <JobCard key={job.id} job={job} />
             ))}
-
-            {/* TODO (Member B - optional): implement job search/filtering. */}
         </div>
     );
 }
