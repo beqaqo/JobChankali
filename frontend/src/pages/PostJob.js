@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { createJob } from '../services/api';
+import '../styles/PostJob.css';
 
 export default function PostJob() {
     const navigate = useNavigate();
@@ -46,74 +47,59 @@ export default function PostJob() {
     }
 
     return (
-        <div>
-            {/* TODO (Member C): design the form according to Figma. */}
+        <div className="post-job">
+            <div className="post-job-card">
+                {/* Logo is at public/logo.png */}
+                <img src="/logo.png" alt="JobChankali" className="post-job-logo" />
 
-            <h1>Post a Job</h1>
-
-            <form onSubmit={handleSubmit}>
-
-                <div>
-                    <label htmlFor="title">Job Title</label>
+                <form onSubmit={handleSubmit}>
                     <input
-                        id="title"
-                        name="title"
-                        type="text"
-                        value={formData.title}
-                        onChange={handleChange}
-                        placeholder="e.g. Python Developer"
-                        required
-                    />
-                </div>
-
-                <div>
-                    <label htmlFor="company">Company</label>
-                    <input
-                        id="company"
                         name="company"
                         type="text"
+                        aria-label="Company name"
                         value={formData.company}
                         onChange={handleChange}
                         placeholder="Company name"
                         required
                     />
-                </div>
 
-                <div>
-                    <label htmlFor="location">Location</label>
+                    {/* "Position" in the design is the job title in the backend */}
                     <input
-                        id="location"
+                        name="title"
+                        type="text"
+                        aria-label="Position"
+                        value={formData.title}
+                        onChange={handleChange}
+                        placeholder="Position"
+                        required
+                    />
+
+                    <input
                         name="location"
                         type="text"
+                        aria-label="Location"
                         value={formData.location}
                         onChange={handleChange}
-                        placeholder="e.g. Tbilisi"
+                        placeholder="Location"
                         required
                     />
-                </div>
 
-                <div>
-                    <label htmlFor="description">Description</label>
                     <textarea
-                        id="description"
                         name="description"
+                        aria-label="Description"
                         value={formData.description}
                         onChange={handleChange}
-                        placeholder="Describe the job..."
-                        rows="6"
+                        placeholder="Description"
                         required
                     />
-                </div>
 
-                <button type="submit" disabled={loading}>
-                    {loading ? 'Creating...' : 'Create Job'}
-                </button>
+                    <button type="submit" className="post-button" disabled={loading}>
+                        {loading ? 'Posting...' : 'Post'}
+                    </button>
+                </form>
 
-            </form>
-
-            {/* TODO (Member C): style error messages according to Figma. */}
-
-            {error && <p>{error}</p>}
+                {error && <p className="post-job-error">{error}</p>}
+            </div>
 
             {/* TODO (Member A): ensure only employers and admins can access this page.
                 This should be handled through ProtectedRoute in App.js. */}

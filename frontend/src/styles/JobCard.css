@@ -1,0 +1,134 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+.job-card-wrapper {
+    margin-bottom: 18px;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* ---------- The white card ---------- */
+.job-card {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 18px;
+    min-height: 100px;
+}
+
+/* ---------- Logo tile ---------- */
+.job-card__logo {
+    width: 94px;
+    height: 94px;
+    flex-shrink: 0;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.job-card__logo img {
+    width: 60%;
+    height: 60%;
+    object-fit: contain;
+}
+
+.job-card__logo span {
+    font-size: 36px;
+    font-weight: 600;
+    color: #3d3d3d;
+}
+
+/* ---------- Text ---------- */
+.job-card__company {
+    margin: 0;
+    font-size: 26px;
+    font-weight: 600;
+    color: #3d3d3d;
+}
+
+.job-card__title {
+    margin: 4px 0 8px;
+    font-size: 18px;
+    color: #555555;
+}
+
+.job-card__location {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin: 0;
+    font-size: 14px;
+    color: #777777;
+}
+
+/* ---------- Arrow (bottom-right corner) ---------- */
+.job-card__arrow {
+    position: absolute;
+    right: 20px;
+    bottom: 14px;
+    background: none;
+    border: none;
+    padding: 4px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+/* Rotate the right arrow so it points down when the card is open */
+.job-card__arrow--open {
+    transform: rotate(90deg);
+}
+
+/* ---------- Description panel ---------- */
+.job-card__details {
+    background: #ffffff;
+    border-radius: 16px;
+    margin: 14px 28px 0;
+    padding: 24px 50px 16px;
+}
+
+.job-card__details p {
+    margin: 0 0 12px;
+    font-size: 17px;
+    line-height: 1.6;
+    color: #777777;
+}
+
+.job-card__apply {
+    display: block;
+    margin-left: auto;
+    padding: 8px 20px;
+    border: none;
+    border-radius: 20px;
+    background: #101c3d;
+    color: #ffffff;
+    font-family: inherit;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.job-card__apply:hover {
+    background: #1d2f63;
+}
+
+/* ---------- Small screens ---------- */
+@media (max-width: 600px) {
+    .job-card__logo {
+        width: 64px;
+        height: 64px;
+    }
+
+    .job-card__company {
+        font-size: 20px;
+    }
+
+    .job-card__title {
+        font-size: 15px;
+    }
+
+    .job-card__details {
+        margin: 12px 0 0;
+        padding: 20px;
+    }
+}

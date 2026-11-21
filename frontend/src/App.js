@@ -12,11 +12,10 @@ export default function App() {
   return (
     <>
       <Navbar />
-      <main>
+      <main className="main-content">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/jobs" element={<JobListing />} />
-          <Route path="/jobs/:id" element={<JobDetail />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           {/* TODO (Member A): wrap this route in <ProtectedRoute roles={['employer', 'admin']}> */}

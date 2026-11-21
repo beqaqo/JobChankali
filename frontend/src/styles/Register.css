@@ -1,0 +1,84 @@
+/* Centers the card on the page */
+.register {
+  display: flex;
+  justify-content: center;
+  padding: 30px 0;
+}
+
+/* The big grey rounded box */
+.register-card {
+  width: 520px;
+  max-width: 100%;
+  background: #f4f4f4;
+  border-radius: 40px;
+  padding: 30px 50px;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+}
+
+.register-logo {
+  width: 260px;
+}
+
+.register-title {
+  font-size: 28px;
+  font-weight: 600;
+  margin: 15px 0 25px;
+}
+
+/* Candidate / Employer buttons */
+.role-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-bottom: 25px;
+}
+
+.role-button {
+  width: 180px;
+  height: 58px;
+  border: none;
+  border-radius: 30px;
+  background: #b0aca9;   /* grey = not selected */
+  color: white;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.role-button.active {
+  background: #0f1d3d;   /* navy = selected */
+}
+
+/* Text boxes */
+.register-card input {
+  display: block;
+  width: 100%;
+  height: 43px;
+  margin-bottom: 30px;
+  padding: 0 18px;
+  border: none;
+  border-radius: 25px;
+  background: #d9d9d9;
+  font-size: 14px;
+  box-sizing: border-box;  /* keeps the width exactly 100% */
+}
+
+.create-button {
+  padding: 10px 22px;
+  border: none;
+  border-radius: 25px;
+  background: #0f1d3d;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.register-footer {
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.register-footer a {
+  color: #ff6b00;
+  text-decoration: none;
+}
