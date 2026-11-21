@@ -47,6 +47,12 @@ cd frontend
 npm install
 npm start
 ```
+
+Create database by running command:
+```bash
+npm run migrate
+```
+
 Packages for everything (bcryptjs, jsonwebtoken, knex, sqlite3) are already in `package.json`.
 
 ## Suggested order of work

@@ -1,3 +1,12 @@
-// TODO (Member A): insert one admin user (hash the password with bcryptjs).
-// Needs the users table from Member B. Run with: npm run seed
-exports.seed = async (knex) => {};
+const bcrypt = require('bcryptjs');
+
+exports.seed = async (knex) => {
+    const passwordHash = await bcrypt.hash('admin123', 10);
+
+    await knex('users').insert({
+        name: 'Admin',
+        email: 'admin@gmail.com',
+        password_hash: passwordHash,
+        role: 'admin'
+    });
+};

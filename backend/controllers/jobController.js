@@ -1,18 +1,88 @@
-// Member B owns this file. Use the functions from ../models/job.js.
-const notImplemented = (req, res) => res.status(501).json({ error: 'Not implemented yet' });
+const jobModel = require('../models/job');
 
-// TODO (Member B): list - return all jobs (optional: filter by ?search= and ?location=).
-exports.list = notImplemented;
+exports.list = async (req, res) => {
+    try {
+        const jobs = await jobModel.getAll();
+        res.status(200).json(jobs);
 
-// TODO (Member B): get - return one job by req.params.id, or 404.
-exports.get = notImplemented;
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to get jobs' });
+    }
+};
 
-// TODO (Member B): create - save a new job (employer_id = req.user.id).
-exports.create = notImplemented;
+exports.get = async (req, res) => {
+    try {
+        const id = req.params.id;
+        const job = await jobModel.getById(id);
 
-// TODO (Member B): update - change a job. Only its owner or an admin may do it
-// (coordinate with Member A: req.user.id / req.user.role).
-exports.update = notImplemented;
+        if (!job) {
+            return res.status(404).json({ error: 'Job not found' });
+        }
+        res.status(200).json(job);
 
-// TODO (Member B): remove - delete a job (same owner/admin rule).
-exports.remove = notImplemented;
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to get job' });
+    }
+};
+
+exports.create = async (req, res) => {
+    try {
+        const jobData = {
+            ...req.body,
+            employer_id: req.user.id
+        };
+        const newJob = await jobModel.create(jobData);
+        res.status(201).json(newJob);
+
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to create job' });
+    }
+};
+
+exports.update = async (req, res) => {
+    try {
+        const id = req.params.id;
+        const job = await jobModel.getById(id);
+
+        if (!job) {
+            return res.status(404).json({ error: 'Job not found' });
+        }
+
+        const isAdmin = req.user.role === 'admin';
+        const isOwner = Number(job.employer_id) === Number(req.user.id);
+
+        if (!isAdmin && !isOwner) {
+            return res.status(403).json({ error: 'You are not allowed to update this job' });
+        }
+
+        const updatedJob = await jobModel.update(id, req.body);
+        res.status(200).json(updatedJob);
+
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to update job' });
+    }
+};
+
+exports.remove = async (req, res) => {
+    try {
+        const id = req.params.id;
+        const job = await jobModel.getById(id);
+
+        if (!job) {
+            return res.status(404).json({ error: 'Job not found' });
+        }
+
+        const isAdmin = req.user.role === 'admin';
+        const isOwner = Number(job.employer_id) === Number(req.user.id);
+
+        if (!isAdmin && !isOwner) {
+            return res.status(403).json({ error: 'You are not allowed to delete this job' });
+        }
+
+        await jobModel.remove(id);
+        res.status(200).json({ message: 'Job deleted successfully' });
+
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to delete job' });
+    }
+};

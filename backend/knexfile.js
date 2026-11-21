@@ -1,4 +1,15 @@
-// TODO (Member B): configure Knex for SQLite.
-//   - client: 'sqlite3', connection filename in ./data/, useNullAsDefault: true
-//   - migrations directory: ./migrations, seeds directory: ./seeds
-module.exports = {};
+module.exports = {
+    development: {
+        client: 'sqlite3',
+        connection: {
+            filename: './data/database.sqlite'
+        },
+        useNullAsDefault: true,
+        migrations: {
+            directory: './migrations'
+        },
+        seeds: {
+            directory: './seeds'
+        }
+    }
+};

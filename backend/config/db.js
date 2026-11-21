@@ -1,3 +1,5 @@
-// TODO (Member B): create the database connection with Knex using ../knexfile
-// and export it, so models can do:  const db = require('../config/db');
-module.exports = null;
+const knex = require('knex');
+const config = require('../knexfile');
+const db = knex(config.development);
+
+module.exports = db;
