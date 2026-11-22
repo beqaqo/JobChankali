@@ -5,24 +5,23 @@ import '../styles/JobCard.css';
 
 export default function JobCard({ job }) {
     const [isOpen, setIsOpen] = useState(false);
-    // NEW: remembers whether the modal is showing (true) or hidden (false)
+    // remembers whether the modal is showing (true) or hidden (false)
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     function toggleCard() {
         setIsOpen(!isOpen);
     }
 
-    // CHANGED: "Apply now" now opens the modal instead of navigating away
+    // "Apply now" opens the modal instead of navigating away
     function handleApply() {
         setIsModalOpen(true);
     }
 
-    // NEW: close the modal
     function handleCloseModal() {
         setIsModalOpen(false);
     }
 
-    // NEW: runs when the user submits the cover letter
+    // runs when the user submits the cover letter
     function handleSubmitApplication(coverLetter) {
         // TODO: send this to your backend, e.g.
         // await applyToJob(job.id, coverLetter);
@@ -77,22 +76,29 @@ export default function JobCard({ job }) {
                 </button>
             </div>
 
-            {/* Job description and Apply button */}
-            {isOpen && (
-                <div className="job-card__details">
-                    <p>{job.description}</p>
+            {/* Job description and Apply button.
+                Always rendered so CSS can animate it open and closed. */}
+            <div
+                className={`job-card__collapse ${isOpen ? 'job-card__collapse--open' : ''}`}
+                aria-hidden={!isOpen}
+            >
+                <div className="job-card__collapse-inner">
+                    <div className="job-card__details">
+                        <p>{job.description}</p>
 
-                    <button
-                        type="button"
-                        className="job-card__apply"
-                        onClick={handleApply}
-                    >
-                        Apply now
-                    </button>
+                        <button
+                            type="button"
+                            className="job-card__apply"
+                            onClick={handleApply}
+                            tabIndex={isOpen ? 0 : -1}
+                        >
+                            Apply now
+                        </button>
+                    </div>
                 </div>
-            )}
+            </div>
 
-            {/* NEW: only draw the modal when isModalOpen is true */}
+            {/* only draw the modal when isModalOpen is true */}
             {isModalOpen && (
                 <ApplyModal
                     job={job}

@@ -4,3 +4,19 @@
 .role-button { width: 180px; height: 58px; border: none; border-radius: 30px;
                background: #b0aca9; color: white; font-size: 22px; cursor: pointer; }
 .role-button.active { background: var(--navy); }
+
+/* no top bar on this page, so remove the gap it used to take */
+.register-page .main-content--no-topbar {
+  margin-top: 0;
+}
+
+/* centers the card in the space next to the sidebar */
+.register-page .page-center--with-nav {
+  min-height: calc(100vh - 20px);
+  background: transparent;
+}
+
+/* hide the top bar (search, Login, Sign in) only on the register page */
+.register-page .topbar {
+  display: none;
+}

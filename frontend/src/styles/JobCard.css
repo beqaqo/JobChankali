@@ -72,12 +72,31 @@
     border: none;
     padding: 4px;
     cursor: pointer;
-    transition: transform 0.2s ease;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Rotate the right arrow so it points down when the card is open */
 .job-card__arrow--open {
     transform: rotate(90deg);
+}
+
+/* ---------- Smooth open/close wrapper ---------- */
+.job-card__collapse {
+    display: grid;
+    grid-template-rows: 0fr;
+    opacity: 0;
+    transition: grid-template-rows 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                opacity 0.3s ease;
+}
+
+.job-card__collapse--open {
+    grid-template-rows: 1fr;
+    opacity: 1;
+}
+
+.job-card__collapse-inner {
+    overflow: hidden;
+    min-height: 0;
 }
 
 /* ---------- Description panel ---------- */

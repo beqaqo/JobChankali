@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import Navbar from '../components/Navbar';
 import '../styles/Login.css';
 
 export default function Login() {
@@ -16,36 +17,42 @@ export default function Login() {
   }
 
   return (
-    <div className="page-center">
-      <div className="auth-card">
-        <img src="/icons/logo.svg" alt="JobChankali" className="login-logo" />
+    <div className="login-page">
+      <Navbar />
 
-        <form className="login-form" onSubmit={handleSubmit}>
-          <input
-            className="input"
-            type="email"
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
+      <div className="main-content main-content--no-topbar">
+        <div className="page-center page-center--with-nav">
+          <div className="auth-card auth-card--white">
+            <img src="/icons/logo.svg" alt="JobChankali" className="login-logo" />
 
-          <input
-            className="input"
-            id="password"
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
+            <form className="login-form" onSubmit={handleSubmit}>
+              <input
+                className="input"
+                type="email"
+                placeholder="Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
 
-          <button type="submit" className="btn btn--primary">Log in</button>
-        </form>
+              <input
+                className="input"
+                id="password"
+                type="password"
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
 
-        <p className="login-footer">
-          Don’t have an account? <Link to="/register" className="link-orange">Create an Account</Link>
-        </p>
+              <button type="submit" className="btn btn--primary">Log in</button>
+            </form>
+
+            <p className="login-footer">
+              Don’t have an account? <Link to="/register" className="link-orange">Create an Account</Link>
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   );
