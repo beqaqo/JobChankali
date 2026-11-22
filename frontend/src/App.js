@@ -1,5 +1,6 @@
 // All page routes. To add a page: create it in pages/ and add a <Route> below.
 import { Routes, Route, useLocation } from 'react-router-dom';
+import './styles/index.css';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import JobListing from './pages/JobListing';

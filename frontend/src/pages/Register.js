@@ -3,29 +3,23 @@ import { Link } from 'react-router-dom';
 import '../styles/Register.css';
 
 export default function Register() {
-  // "candidate" or "employer" - whichever button is selected
   const [role, setRole] = useState('candidate');
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   function handleSubmit(event) {
-    event.preventDefault(); // stops the page from reloading
-
+    event.preventDefault();
     // TODO (Member A): send this data to the backend and log the user in
     console.log({ role, fullName, email, password });
   }
 
   return (
-    <div className="register">
-      <div className="register-card">
-        {/* Put your logo image at public/logo.png */}
+    <div className="page-center">
+      <div className="auth-card">
         <img src="/icons/logo.svg" alt="JobChankali" className="register-logo" />
 
-        {/*<h1 className="register-title">Create an account</h1>*/}
-
         <form onSubmit={handleSubmit}>
-          {/* Candidate / Employer buttons */}
           <div className="role-buttons">
             <button
               type="button"
@@ -44,6 +38,7 @@ export default function Register() {
           </div>
 
           <input
+            className="input"
             type="text"
             placeholder="Full name"
             value={fullName}
@@ -51,6 +46,7 @@ export default function Register() {
             required
           />
           <input
+            className="input"
             type="email"
             placeholder="Email"
             value={email}
@@ -58,6 +54,7 @@ export default function Register() {
             required
           />
           <input
+            className="input"
             type="password"
             placeholder="Password"
             value={password}
@@ -65,13 +62,14 @@ export default function Register() {
             required
           />
 
-          <button type="submit" className="create-button">
+          <button type="submit" className="btn btn--primary">
             Create account
           </button>
         </form>
 
         <p className="register-footer">
-          Already have an account? <Link to="/login">Sign in</Link>
+          Already have an account?{' '}
+          <Link to="/login" className="link-orange">Sign in</Link>
         </p>
       </div>
     </div>

@@ -1,19 +1,34 @@
-
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 
+import ApplyModal from './ApplyModal';
 import '../styles/JobCard.css';
 
 export default function JobCard({ job }) {
     const [isOpen, setIsOpen] = useState(false);
-    const navigate = useNavigate();
+    // NEW: remembers whether the modal is showing (true) or hidden (false)
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     function toggleCard() {
         setIsOpen(!isOpen);
     }
 
+    // CHANGED: "Apply now" now opens the modal instead of navigating away
     function handleApply() {
-        navigate('/post-job', { state: { job } });
+        setIsModalOpen(true);
+    }
+
+    // NEW: close the modal
+    function handleCloseModal() {
+        setIsModalOpen(false);
+    }
+
+    // NEW: runs when the user submits the cover letter
+    function handleSubmitApplication(coverLetter) {
+        // TODO: send this to your backend, e.g.
+        // await applyToJob(job.id, coverLetter);
+        console.log('Applying to', job.title, 'with cover letter:', coverLetter);
+
+        setIsModalOpen(false);
     }
 
     return (
@@ -75,6 +90,15 @@ export default function JobCard({ job }) {
                         Apply now
                     </button>
                 </div>
+            )}
+
+            {/* NEW: only draw the modal when isModalOpen is true */}
+            {isModalOpen && (
+                <ApplyModal
+                    job={job}
+                    onClose={handleCloseModal}
+                    onSubmit={handleSubmitApplication}
+                />
             )}
         </div>
     );

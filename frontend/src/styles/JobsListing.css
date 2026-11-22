@@ -1,17 +1,15 @@
 .job-listing {
-    background: #f4f4fa;
-    min-height: 100vh;
-    padding: 24px 12px;
-    font-family: 'Poppins', sans-serif;
+  background: var(--page-bg);
+  min-height: 100vh;
+  padding: 24px 12px;
 }
 
 .job-listing__message {
-    text-align: center;
-    padding: 40px 20px;
-    color: #777777;
-    font-family: 'Poppins', sans-serif;
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--text-light);
 }
 
 .job-listing__message--error {
-    color: #dc2626;
+  color: var(--red);
 }

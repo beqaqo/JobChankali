@@ -1,2 +1,99 @@
-/* TODO (Member C): global styles based on the Figma design
-   (colors, fonts, spacing, buttons, forms, cards, responsive layout). */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+:root {
+  /* brand */
+  --orange: #ff6b0f;
+  --navy: #0f1f40;
+  --red: #e00000;
+
+  /* backgrounds */
+  --page-bg: #f5f5fa;
+  --card-bg: #f4f4f4;
+  --input-bg: #d9d9d9;
+  --white: #ffffff;
+
+  /* text */
+  --text-dark: #3d3d3d;
+  --text-mid: #555555;
+  --text-light: #777777;
+
+  /* shape */
+  --radius-card: 40px;
+  --radius-pill: 25px;
+
+  /* layout */
+  --sidebar-width: 240px;
+  --topbar-height: 100px;
+
+  --font-main: 'Poppins', Arial, sans-serif;
+}
+
+body {
+  margin: 0;
+  background: var(--page-bg);
+  font-family: var(--font-main);
+}
+
+/* Full-screen centered page (Login, Register) */
+.page-center {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--white);
+}
+
+/* Big rounded card (Login, Register, PostJob) */
+.auth-card {
+  width: 100%;
+  max-width: 520px;
+  box-sizing: border-box;
+  padding: 40px 50px;
+  background: var(--card-bg);
+  border-radius: var(--radius-card);
+  text-align: center;
+}
+
+/* Pill text inputs and textareas */
+.input {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  height: 43px;
+  margin-bottom: 24px;
+  padding: 0 18px;
+  border: none;
+  border-radius: var(--radius-pill);
+  background: var(--input-bg);
+  font-family: inherit;
+  font-size: 14px;
+}
+.input:focus { outline: 2px solid var(--orange); }
+
+textarea.input {
+  height: 95px;
+  padding-top: 12px;
+  resize: none;
+}
+
+/* Buttons */
+.btn {
+  padding: 10px 28px;
+  border: none;
+  border-radius: var(--radius-pill);
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.btn:hover { opacity: 0.9; }
+
+.btn--primary { background: var(--navy); color: var(--white); }
+.btn--orange  { background: var(--orange); color: var(--white); }
+.btn--grey    { background: var(--card-bg); color: #000; }
+
+.link-orange { color: var(--orange); text-decoration: none; }
+.link-orange:hover { text-decoration: underline; }
+
+.auth-card--white { background: var(--white); }
+.btn:disabled { opacity: 0.6; cursor: not-allowed; }

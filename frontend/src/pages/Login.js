@@ -16,34 +16,35 @@ export default function Login() {
   }
 
   return (
-    <div className="login-page">
-      <div className="login-card">
+    <div className="page-center">
+      <div className="auth-card">
         <img src="/icons/logo.svg" alt="JobChankali" className="login-logo" />
 
         <form className="login-form" onSubmit={handleSubmit}>
-          <label htmlFor="email">Email:</label>
           <input
-            id="email"
+            className="input"
             type="email"
+            placeholder="Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
           />
 
-          <label htmlFor="password">Password:</label>
           <input
+            className="input"
             id="password"
             type="password"
+            placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
 
-          <button type="submit" className="login-button">Sign in</button>
+          <button type="submit" className="btn btn--primary">Log in</button>
         </form>
 
         <p className="login-footer">
-          Don’t have an account? <Link to="/register">Create an Account</Link>
+          Don’t have an account? <Link to="/register" className="link-orange">Create an Account</Link>
         </p>
       </div>
     </div>

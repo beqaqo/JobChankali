@@ -23,10 +23,9 @@ export default function Navbar() {
 
     return (
     <>
-      {/* ===== LEFT SIDEBAR ===== */}
+      {/* LEFT SIDEBAR */}
       <aside className="sidebar">
-        <Link to="/" className="logo">
-          {/* Put your logo in public/icons/logo.svg */}
+        <Link to="/jobs" className="logo">
           <img src="/icons/logo.svg" alt="JobChankali" className="logo-img" />
         </Link>
 
@@ -37,16 +36,16 @@ export default function Navbar() {
           {/*<NavLink to="/jobs" className={linkClass}>*/}
           {/*  <img src="/icons/my-jobs.svg" alt="" className="icon" /> My Jobs*/}
           {/*</NavLink>*/}
-          <NavLink to="/activity" className={linkClass}>
-            <img src="/icons/activity.svg" alt="" className="icon" /> My Activity
-          </NavLink>
+          {/*<NavLink to="/activity" className={linkClass}>*/}
+          {/*  <img src="/icons/activity.svg" alt="" className="icon" /> My Activity*/}
+          {/*</NavLink>*/}
         </nav>
 
         {/* Member A: replace this text with the logged-in user's name */}
         <div className="user-box">Beka Kopadze</div>
       </aside>
 
-      {/* ===== TOP BAR ===== */}
+      {/* TOP BAR */}
       <header className="topbar">
         <form className="search" onSubmit={handleSearch}>
           <input

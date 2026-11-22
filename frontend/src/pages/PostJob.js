@@ -48,12 +48,11 @@ export default function PostJob() {
 
     return (
         <div className="post-job">
-            <div className="post-job-card">
-                {/* Logo is at public/logo.png */}
-                <img src="/logo.png" alt="JobChankali" className="post-job-logo" />
-
+            <div className="auth-card auth-card--white">
+                <img src="/icons/logo.svg" alt="JobChankali" className="post-job-logo" />
                 <form onSubmit={handleSubmit}>
                     <input
+                        className="input"
                         name="company"
                         type="text"
                         aria-label="Company name"
@@ -63,8 +62,8 @@ export default function PostJob() {
                         required
                     />
 
-                    {/* "Position" in the design is the job title in the backend */}
                     <input
+                        className="input"
                         name="title"
                         type="text"
                         aria-label="Position"
@@ -75,6 +74,7 @@ export default function PostJob() {
                     />
 
                     <input
+                        className="input"
                         name="location"
                         type="text"
                         aria-label="Location"
@@ -85,6 +85,7 @@ export default function PostJob() {
                     />
 
                     <textarea
+                        className="input"
                         name="description"
                         aria-label="Description"
                         value={formData.description}
@@ -93,16 +94,13 @@ export default function PostJob() {
                         required
                     />
 
-                    <button type="submit" className="post-button" disabled={loading}>
+                    <button type="submit" className="btn btn--primary" disabled={loading}>
                         {loading ? 'Posting...' : 'Post'}
                     </button>
                 </form>
 
                 {error && <p className="post-job-error">{error}</p>}
             </div>
-
-            {/* TODO (Member A): ensure only employers and admins can access this page.
-                This should be handled through ProtectedRoute in App.js. */}
         </div>
     );
 }
