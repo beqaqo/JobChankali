@@ -58,6 +58,7 @@ export default function Login() {
         <p className="login-footer">
           Don’t have an account? <Link to="/register" className="link-orange">Create an Account</Link>
         </p>
+        <Link to="/" className="link-orange"> ← Back to home </Link>
       </div>
     </div>
   );
