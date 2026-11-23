@@ -5,3 +5,19 @@
 .login-form label { margin: 0 0 4px 8px; font-size: 16px; }
 
 .login-footer { margin-top: 24px; font-size: 14px; }
+
+/* no top bar on this page, so remove the gap it used to take */
+.main-content--no-topbar {
+  margin-top: 0;
+}
+
+/* centers the card in the space next to the sidebar */
+.page-center.page-center--with-nav {
+  min-height: calc(100vh - 20px);
+  background: transparent;
+}
+
+/* hide the top bar (search, Login, Sign in) only on the login page */
+.login-page .topbar {
+  display: none;
+}

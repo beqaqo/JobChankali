@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState } from 'react';\
+import Navbar from '../components/Navbar';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import '../styles/Login.css';
