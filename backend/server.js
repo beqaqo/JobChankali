@@ -14,8 +14,14 @@ app.use('/api/auth', require('./routes/auth'));
 app.use('/api/jobs', require('./routes/jobs'));
 app.use('/api/applications', require('./routes/applications'));
 
-// TODO (Member A): add a general error-handling middleware here
-// (return a JSON { error: '...' } and the right status code, e.g. 400, 401, 403, 404, 500).
+// Unknown URL -> 404
+app.use((req, res) => res.status(404).json({ error: 'Not found' }));
+
+// Any error that was not handled -> JSON error instead of an HTML page
+app.use((err, req, res, next) => {
+  console.error(err);
+  res.status(err.status || 500).json({ error: err.message || 'Server error' });
+});
 
 const port = process.env.PORT || 5000;
 app.listen(port, () => console.log(`API running on http://localhost:${port}`));

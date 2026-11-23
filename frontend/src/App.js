@@ -7,6 +7,7 @@ import JobListing from './pages/JobListing';
 import Register from './pages/Register';
 import Login from './pages/Login';
 import PostJob from './pages/PostJob';
+import ProtectedRoute from './components/ProtectedRoute';
 
 export default function App() {
   const location = useLocation();
@@ -22,8 +23,14 @@ export default function App() {
           <Route path="/jobs" element={<JobListing />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
-          {/* TODO (Member A): wrap this route in <ProtectedRoute roles={['employer', 'admin']}> */}
-          <Route path="/post-job" element={<PostJob />} />
+          <Route
+            path="/post-job"
+            element={
+              <ProtectedRoute roles={['employer', 'admin']}>
+                <PostJob />
+              </ProtectedRoute>
+            }
+          />
           {/* TODO (Member C): add a 404 "page not found" route (path="*") */}
           {/* TODO (Member B + C): add pages for "my applications" (candidate) and "my jobs" (employer) */}
         </Routes>
