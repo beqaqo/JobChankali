@@ -8,16 +8,17 @@ import Register from './pages/Register';
 import Login from './pages/Login';
 import PostJob from './pages/PostJob';
 import ProtectedRoute from './components/ProtectedRoute';
+import NotFound from './pages/NotFound';
 
 export default function App() {
   const location = useLocation();
 
-  const hideNavbar = location.pathname === '/login' || location.pathname === '/register';
+const showNavbar = ['/', '/jobs', '/post-job'].includes(location.pathname);
 
   return (
     <>
-      {!hideNavbar && <Navbar />}
-      <main className={hideNavbar ? '' : 'main-content'}>
+      {showNavbar && <Navbar />}
+      <main className={showNavbar ? 'main-content' : ''}>
         <Routes>
           <Route path="/" element={<JobListing />} />
           <Route path="/jobs" element={<JobListing />} />
@@ -31,7 +32,7 @@ export default function App() {
               </ProtectedRoute>
             }
           />
-          {/* TODO (Member C): add a 404 "page not found" route (path="*") */}
+          <Route path="*" element={<NotFound />} />
           {/* TODO (Member B + C): add pages for "my applications" (candidate) and "my jobs" (employer) */}
         </Routes>
       </main>
