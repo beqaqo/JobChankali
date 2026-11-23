@@ -1,11 +1,10 @@
 const router = require('express').Router();
 const applicationController = require('../controllers/applicationController');
-// const { authenticate, authorize } = require('../middleware/auth');
+const { validateApplication } = require('../middleware/validate');
+const { authenticate, authorize } = require('../middleware/auth');
 
-// TODO (Member A): protect each route with authenticate + authorize:
-//   submit -> 'candidate' only | listMine -> 'candidate' only | listForJob -> 'employer', 'admin'
-router.post('/', applicationController.submit);
-router.get('/mine', applicationController.listMine);
-router.get('/job/:jobId', applicationController.listForJob);
+router.post('/', authenticate, authorize('candidate'), validateApplication, applicationController.submit);
+router.get('/mine', authenticate, authorize('candidate'), applicationController.listMine);
+router.get('/job/:jobId', authenticate, authorize('employer', 'admin'), applicationController.listForJob);
 
 module.exports = router;
