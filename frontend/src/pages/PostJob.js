@@ -27,7 +27,7 @@ export default function PostJob() {
             // Send job information to the backend
             const data = await createJob(formData);
             // Redirect to the newly created job
-            navigate(`/jobs/${data.id}`);
+            navigate(`/jobs`);
 
         } catch (err) {
             setError(err.message || 'Failed to create job');

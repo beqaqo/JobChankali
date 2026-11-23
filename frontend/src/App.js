@@ -19,7 +19,7 @@ export default function App() {
       {!hideNavbar && <Navbar />}
       <main className={hideNavbar ? '' : 'main-content'}>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<JobListing />} />
           <Route path="/jobs" element={<JobListing />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />

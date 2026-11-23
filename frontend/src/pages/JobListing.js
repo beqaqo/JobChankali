@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 
 import { getJobs } from '../services/api';
 import JobCard from '../components/JobCard';
@@ -8,6 +9,9 @@ export default function JobListing() {
     const [jobs, setJobs] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
+
+    const [searchParams] = useSearchParams();
+    const search = searchParams.get('search')?.toLowerCase().trim() || '';
 
     useEffect(() => {
         async function fetchJobs() {
@@ -39,15 +43,22 @@ export default function JobListing() {
         );
     }
 
-    if (jobs.length === 0) {
-        return <p className="job-listing__message">No jobs available at the moment.</p>;
+    const filteredJobs = jobs.filter((job) =>
+        job.title?.toLowerCase().includes(search) ||
+        job.company?.toLowerCase().includes(search)
+    );
+
+    if (filteredJobs.length === 0) {
+        return (
+            <p className="job-listing__message">
+                No jobs found.
+            </p>
+        );
     }
 
     return (
         <div className="job-listing">
-            {/* TODO (Member B - optional): implement job search/filtering. */}
-
-            {jobs.map((job) => (
+            {filteredJobs.map((job) => (
                 <JobCard key={job.id} job={job} />
             ))}
         </div>

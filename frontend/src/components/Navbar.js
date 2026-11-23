@@ -39,11 +39,11 @@ export default function Navbar() {
           <NavLink to="/jobs" end className={linkClass}>
             <img src="/icons/home.svg" alt="" className="icon" /> Home
           </NavLink>
-          {canPostJobs && (
-            <NavLink to="/post-job" className={linkClass}>
-              <img src="/icons/my-jobs.svg" alt="" className="icon" /> Post a job
-            </NavLink>
-          )}
+          {/*{canPostJobs && (*/}
+          {/*  <NavLink to="/post-job" className={linkClass}>*/}
+          {/*    <img src="/icons/my-jobs.svg" alt="" className="icon" /> Post a job*/}
+          {/*  </NavLink>*/}
+          {/*)}*/}
           {/*<NavLink to="/jobs" className={linkClass}>*/}
           {/*  <img src="/icons/my-jobs.svg" alt="" className="icon" /> My Jobs*/}
           {/*</NavLink>*/}
@@ -71,8 +71,10 @@ export default function Navbar() {
 
         {user ? (
           <>
-            <span className="login-link">{user.name}</span>
-            <button type="button" className="signin-button" onClick={handleLogout}>Logout</button>
+            {canPostJobs && (
+              <Link to="/post-job" className="login-link">Post Job</Link>
+            )}
+            <button className="signin-button" style={{'border': 'none'}} onClick={handleLogout}>Logout</button>
           </>
         ) : (
           <>
