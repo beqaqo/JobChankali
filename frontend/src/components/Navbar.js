@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 import '../styles/Navbar.css';
 
 export default function Navbar() {
-  // TODO (Member A): show Login/Register when logged out; user name + Logout when logged in;
-  //   show "Post a job" only for employers/admins (use useAuth()).
+  const { user, logout } = useAuth();
+  const canPostJobs = user && (user.role === 'employer' || user.role === 'admin');
 
   const [query, setQuery] = useState('');
   const navigate = useNavigate();
@@ -14,6 +15,11 @@ export default function Navbar() {
   function handleSearch(event) {
     event.preventDefault(); // stops the page from reloading
     navigate(`/jobs?search=${encodeURIComponent(query)}`);
+  }
+
+  function handleLogout() {
+    logout();
+    navigate('/login');
   }
 
   // NavLink gives us "isActive" so we can highlight the current page.
@@ -33,6 +39,11 @@ export default function Navbar() {
           <NavLink to="/jobs" end className={linkClass}>
             <img src="/icons/home.svg" alt="" className="icon" /> Home
           </NavLink>
+          {/*{canPostJobs && (*/}
+          {/*  <NavLink to="/post-job" className={linkClass}>*/}
+          {/*    <img src="/icons/my-jobs.svg" alt="" className="icon" /> Post a job*/}
+          {/*  </NavLink>*/}
+          {/*)}*/}
           {/*<NavLink to="/jobs" className={linkClass}>*/}
           {/*  <img src="/icons/my-jobs.svg" alt="" className="icon" /> My Jobs*/}
           {/*</NavLink>*/}
@@ -41,8 +52,7 @@ export default function Navbar() {
           {/*</NavLink>*/}
         </nav>
 
-        {/* Member A: replace this text with the logged-in user's name */}
-        <div className="user-box">Beka Kopadze</div>
+        {user && <div className="user-box">{user.name}</div>}
       </aside>
 
       {/* TOP BAR */}
@@ -59,9 +69,19 @@ export default function Navbar() {
           </button>
         </form>
 
-        {/* Member A: swap these for user name + Logout when logged in */}
-        <Link to="/login" className="login-link">Login</Link>
-        <Link to="/register" className="signin-button">Sign in</Link>
+        {user ? (
+          <>
+            {canPostJobs && (
+              <Link to="/post-job" className="login-link">Post Job</Link>
+            )}
+            <button className="signin-button" style={{'border': 'none'}} onClick={handleLogout}>Logout</button>
+          </>
+        ) : (
+          <>
+            <Link to="/login" className="login-link">Login</Link>
+            <Link to="/register" className="signin-button">Sign in</Link>
+          </>
+        )}
       </header>
     </>
   );

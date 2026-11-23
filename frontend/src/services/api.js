@@ -2,12 +2,27 @@
 // Basic helper: request('/jobs') or request('/jobs', 'POST', { title: '...' })
 
 export async function request(path, method = 'GET', body) {
-    // TODO (Member A): add the JWT token to the headers (Authorization: Bearer <token>)
+    const headers = { 'Content-Type': 'application/json' };
+
+    // If the user is logged in, send their token so the backend knows who they are
+    const token = localStorage.getItem('token');
+    if (token) {
+        headers.Authorization = `Bearer ${token}`;
+    }
+
     const res = await fetch(`/api${path}`, {
         method,
-        headers: { 'Content-Type': 'application/json' },
+        headers,
         body: body ? JSON.stringify(body) : undefined,
     });
+
+    // We sent a token but the backend rejected it (expired or invalid):
+    // log the user out and send them to the login page
+    if (res.status === 401 && token) {
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        window.location.href = '/login';
+    }
 
     const data = res.status === 204 ? null : await res.json();
 
@@ -52,5 +67,15 @@ export async function getJobApplications(jobId) {
     return request(`/applications/job/${jobId}`);
 }
 
+// auth
+export async function register(data) {
+    return request('/auth/register', 'POST', data);
+}
 
-// TODO (Member A): export register(data), login(data), getMe()
+export async function login(data) {
+    return request('/auth/login', 'POST', data);
+}
+
+export async function getMe() {
+    return request('/auth/me');
+}

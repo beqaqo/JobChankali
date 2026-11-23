@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 import '../styles/Register.css';
 
 export default function Register() {
@@ -8,11 +10,21 @@ export default function Register() {
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
 
-  function handleSubmit(event) {
+  const { register } = useAuth();
+  const navigate = useNavigate();
+
+  async function handleSubmit(event) {
     event.preventDefault();
-    // TODO (Member A): send this data to the backend and log the user in
-    console.log({ role, fullName, email, password });
+
+    try {
+      setError('');
+      await register({ name: fullName, email, password, role });
+      navigate('/jobs');
+    } catch (err) {
+      setError(err.message);
+    }
   }
 
   return (

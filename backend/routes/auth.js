@@ -1,14 +1,14 @@
 // Member A owns this file.
 const router = require('express').Router();
 const authController = require('../controllers/authController');
+const { validateRegister, validateLogin } = require('../middleware/validate');
+const { authenticate, authorize } = require('../middleware/auth');
 
-// TODO (Member A): add validation middleware (from ../middleware/validate) to register and login.
-router.post('/register', authController.register);
-router.post('/login', authController.login);
+router.post('/register', validateRegister, authController.register);
+router.post('/login', validateLogin, authController.login);
+router.get('/me', authenticate, authController.me);
 
-// TODO (Member A): protect this route with authenticate.
-router.get('/me', authController.me);
-
-// TODO (Member A, optional): admin-only route to list/delete users.
+// Admin only: list all users
+router.get('/users', authenticate, authorize('admin'), authController.listUsers);
 
 module.exports = router;
