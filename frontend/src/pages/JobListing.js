@@ -59,7 +59,7 @@ export default function JobListing() {
     return (
         <div className="job-listing">
             {filteredJobs.map((job) => (
-                <JobCard key={job.id} job={job} />
+                <JobCard key={job.id} job={job} onDeleted={(id) => setJobs((prev) => prev.filter((j) => j.id !== id))}/>
             ))}
         </div>
     );

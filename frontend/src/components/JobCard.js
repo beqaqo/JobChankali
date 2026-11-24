@@ -1,9 +1,12 @@
 import { useState } from 'react';
-
+import { useAuth } from '../context/AuthContext';
+import { deleteJob } from '../services/api';
 import ApplyModal from './ApplyModal';
 import '../styles/JobCard.css';
 
-export default function JobCard({ job }) {
+export default function JobCard({ job, onDeleted }) {
+    const { user } = useAuth();
+    const isAdmin = user?.role === 'admin';
     const [isOpen, setIsOpen] = useState(false);
     // remembers whether the modal is showing (true) or hidden (false)
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -61,6 +64,24 @@ export default function JobCard({ job }) {
                         {job.location}
                     </p>
                 </div>
+
+                {isAdmin && (
+                    <button
+                        type="button"
+                        className="job-card__delete"
+                        aria-label="Delete job"
+                        onClick={async () => {
+                            try {
+                                await deleteJob(job.id);
+                                onDeleted?.(job.id);
+                            } catch (err) {
+                                alert(err.message || 'Failed to delete job');
+                            }
+                        }}
+                    >
+                        <img src="/icons/delete.svg" alt="" width="22" height="22" />
+                    </button>
+                )}
 
                 {/* Expand/collapse button */}
                 <button
